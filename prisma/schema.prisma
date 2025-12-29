@@ -1,0 +1,105 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  settings  UserSettings?
+  bookmarks Bookmark[]
+  outlines  Outline[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model UserSettings {
+  id              String  @id @default(cuid())
+  userId          String  @unique
+  user            User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bibleVersionId  String  @default("nvi")
+  fontSize        Int     @default(16)
+  darkMode        Boolean @default(false)
+}
+
+model BibleVersion {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  abbreviation String  @unique
+  language    String   @default("pt-BR")
+  description String?
+  verses     Verse[]
+  createdAt   DateTime @default(now())
+}
+
+model Book {
+  id        String    @id @default(cuid())
+  name      String
+  testament String    // AT or NT
+  chapters  Int       // number of chapters
+  order     Int       // order in Bible
+  createdAt DateTime  @default(now())
+}
+
+model Chapter {
+  id     String @id @default(cuid())
+  bookId String
+  number Int
+  verses Verse[]
+  createdAt DateTime @default(now())
+
+  @@unique([bookId, number])
+}
+
+model Verse {
+  id               String       @id @default(cuid())
+  chapterId        String
+  chapter          Chapter      @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  number           Int
+  text             String
+  bibleVersionId   String
+  bibleVersion     BibleVersion  @relation(fields: [bibleVersionId], references: [id])
+  bookmarks        Bookmark[]
+  createdAt        DateTime      @default(now())
+
+  @@unique([chapterId, number, bibleVersionId])
+  @@index([text])
+}
+
+model Bookmark {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  verseId   String
+  verse     Verse    @relation(fields: [verseId], references: [id], onDelete: Cascade)
+  color     String   @default("yellow")
+  note      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId, verseId])
+}
+
+model Outline {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  content   String
+  verses    String? // JSON array of verse references
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+}
