@@ -107,8 +107,8 @@ export function UserNav() {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-            <User className="h-5 w-5" />
+          <Button variant="ghost" className="relative h-10 w-10 rounded-full">
+            <User className="h-6 w-6" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56" align="end" forceMount>
@@ -133,8 +133,8 @@ export function UserNav() {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant="ghost" size="icon" className="h-9 w-9">
-          <User className="h-5 w-5" />
+        <Button variant="ghost" size="icon" className="h-10 w-10">
+          <User className="h-6 w-6" />
           <span className="sr-only">Entrar</span>
         </Button>
       </DialogTrigger>

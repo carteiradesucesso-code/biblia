@@ -19,26 +19,29 @@ export function InteractiveWord({ word, index, isSelected, isHighlighted, hasSav
   return (
     <span className="relative inline-block group/word">
         {isSelected && (
-            <div className="absolute -top-9 left-1/2 -translate-x-1/2 flex items-center gap-1 z-[50] animate-in fade-in zoom-in duration-200">
+            <div className="absolute -top-12 left-1/2 -translate-x-1/2 flex items-center gap-3 z-[50] animate-in fade-in zoom-in duration-200">
                 <button
                     onClick={(e) => {
                         e.stopPropagation()
                         onConfirmAnalyze?.()
                     }}
-                    className="bg-popover text-popover-foreground p-1.5 rounded-full shadow-md border border-border hover:scale-105 transition-transform cursor-pointer"
+                    className="bg-popover text-popover-foreground p-2.5 rounded-full shadow-lg border border-border hover:scale-110 transition-transform cursor-pointer flex items-center justify-center min-w-[40px] min-h-[40px]"
                     title="Clique para analisar"
                 >
-                    <Search className="w-3.5 h-3.5" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+                        <circle cx="10" cy="10" r="7" />
+                        <path d="m21 21-6-6" />
+                    </svg>
                 </button>
                 <button
                     onClick={(e) => {
                         e.stopPropagation()
                         onClear?.()
                     }}
-                    className="bg-destructive text-destructive-foreground p-1.5 rounded-full shadow-md border border-border hover:scale-105 transition-transform cursor-pointer"
+                    className="bg-primary text-primary-foreground p-2.5 rounded-full shadow-lg border border-border hover:scale-110 transition-transform cursor-pointer flex items-center justify-center min-w-[40px] min-h-[40px]"
                     title="Fechar seleção"
                 >
-                    <X className="w-3.5 h-3.5" />
+                    <X className="w-5 h-5" />
                 </button>
             </div>
         )}

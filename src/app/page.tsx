@@ -831,8 +831,8 @@ export default function BibleApp() {
              <div className="h-4 w-px bg-primary-foreground/30 mx-1" />
              <Dialog>
               <DialogTrigger asChild>
-                <Button size="sm" variant="ghost" className="h-8 w-8 p-0 hover:bg-primary-foreground/20 text-primary-foreground rounded-full" title="Adicionar Nota">
-                  <Highlighter className="w-4 h-4" />
+                <Button size="sm" variant="ghost" className="h-10 w-10 p-0 hover:bg-primary-foreground/20 text-primary-foreground rounded-full" title="Adicionar Nota">
+                  <Highlighter className="w-5 h-5" />
                 </Button>
               </DialogTrigger>
               <DialogContent>
@@ -867,21 +867,21 @@ export default function BibleApp() {
              <Button 
                 size="sm" 
                 variant="ghost" 
-                className="h-8 w-8 p-0 hover:bg-primary-foreground/20 text-primary-foreground rounded-full"
+                className="h-10 w-10 p-0 hover:bg-primary-foreground/20 text-primary-foreground rounded-full"
                 onClick={() => handleCopyVerses(selectedVerses)}
                 title="Copiar"
              >
-                <Copy className="w-4 h-4" />
+                <Copy className="w-5 h-5" />
              </Button>
 
              <Button 
                 size="sm" 
                 variant="ghost" 
-                className="h-8 w-8 p-0 hover:bg-primary-foreground/20 text-primary-foreground rounded-full"
+                className="h-10 w-10 p-0 hover:bg-primary-foreground/20 text-primary-foreground rounded-full"
                 onClick={() => setSelectedVerses([])}
                 title="Fechar"
              >
-                <X className="w-4 h-4" />
+                <X className="w-5 h-5" />
              </Button>
           </div>
         ) : (
@@ -1405,16 +1405,16 @@ export default function BibleApp() {
               <Button 
                 variant="ghost" 
                 size="icon" 
-                className="md:hidden"
+                className="md:hidden h-10 w-10 rounded-full"
                 onClick={() => setCurrentView('home')}
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronLeft className="w-6 h-6" />
               </Button>
             ) : (
               <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
                 <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon" className="md:hidden">
-                    <Menu className="w-5 h-5" />
+                  <Button variant="ghost" size="icon" className="md:hidden h-10 w-10 rounded-full">
+                    <Menu className="w-6 h-6" />
                   </Button>
                 </SheetTrigger>
                 <SheetContent side="left">
